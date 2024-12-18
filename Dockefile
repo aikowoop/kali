@@ -1,12 +1,8 @@
 FROM ubuntu:latest
 
 # Configurer les locales
-RUN apt update -y && apt upgrade -y && apt install -y locales && \
+RUN apt update -y && apt upgrade -y && apt install -y locales ssh wget unzip curl jq && \
     localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
-
-# Installer les outils nécessaires
-RUN apt install -y ssh wget unzip curl jq
 
 # Télécharger et installer cloudflared
 RUN wget https://github.com/cloudflare/cloudflared/releases/download/2024.9.1/cloudflared-linux-amd64.deb && \
